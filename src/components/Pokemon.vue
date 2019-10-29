@@ -1,6 +1,6 @@
 <template>
-  <div class="pokemon" :data-pokemon="name">
-    <img :src="imgURL" class="pokemon-img" alt="">
+  <div class="col-lg-2 col-md-4 col-sm-6 pokemon" :id="number" :data-pokemon="name">
+    <img :src="spriteURL" class="pokemon-img" alt="">
     <p class="pokemon-name">{{ name }}</p>
     <p class="pokemon-info"><span class="grass">{{ type1 }}</span> | <span class="poison">{{ type2 }}</span></p>
   </div>
@@ -11,17 +11,10 @@ export default {
   name: 'Pokemon',
   props: {
     name: String,
+    number: Number,
+    spriteURL: String,
     type1: String,
     type2: String
-  },
-  data: function() {
-    return {
-      imgSrc: "./../assets/" + this.name + ".svg",
-      imgURL: require(imgSrc)
-    }
-  },
-  mounted() {
-    console.log(this.imgURL);
   }
 }
 </script>

@@ -15,7 +15,12 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  mounted() {
+    document.getElementById("filter").onchange = function() { 
+      console.log("Changed!"); 
+    }
+  }
 }
 </script>
 

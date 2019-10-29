@@ -3,9 +3,7 @@
     <Header />
     <div class="container">
       <div class="row">
-        <div v-for="item in items" class="col-lg-2 col-md-4">
-          <Pokemon name="abra" type1="grass" type2="poison" />
-        </div>
+        <Pokemon v-for="pokemon in pokelist" :name="pokemon['data']['name']" :number="pokemon['data']['id']" :spriteURL="pokemon['data']['sprites']['front_default']" type1="grass" type2="poison" />
       </div>
     </div>
     <p>{{ info }}</p>
@@ -35,13 +33,15 @@ export default {
         { message: 'Foo' },
         { message: 'Bar' }
       ],
-      info: null
+      pokelist: []
     }
   },
   mounted() {
-    axios
-      .get('https://pokeapi.co/api/v2/pokemon/1/')
-      .then(response => (this.info = response))
+    for (let i = 0; i < 151; i++) {
+      axios
+        .get('https://pokeapi.co/api/v2/pokemon/' + i + '/')
+        .then(response => (this.pokelist.push(response)))
+    }
   }
 }
 </script>
