@@ -2,10 +2,10 @@
   <div class="header">
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-lg-8 col-md-6">
           <h1>PokeAPI</h1>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-6">
           <input type="text" name="filter" id="filter">
         </div>
       </div>
@@ -28,6 +28,7 @@ export default {
 h1 {
   margin: 0;
   line-height: 80px;
+  color: white;
 }
 
 #filter {

@@ -1,5 +1,5 @@
 <template>
-  <div class="pokemon">
+  <div class="pokemon" :data-pokemon="name">
     <img :src="imgURL" class="pokemon-img" alt="">
     <p class="pokemon-name">{{ name }}</p>
     <p class="pokemon-info"><span class="grass">{{ type1 }}</span> | <span class="poison">{{ type2 }}</span></p>

@@ -8,13 +8,14 @@
         </div>
       </div>
     </div>
-    
+    <p>{{ info }}</p>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import Pokemon from './components/Pokemon.vue'
+import axios from 'axios'
 
 export default {
   name: 'app',
@@ -33,9 +34,15 @@ export default {
         { message: 'Bar' },
         { message: 'Foo' },
         { message: 'Bar' }
-      ]
+      ],
+      info: null
     }
   },
+  mounted() {
+    axios
+      .get('https://pokeapi.co/api/v2/pokemon/1/')
+      .then(response => (this.info = response))
+  }
 }
 </script>
 
