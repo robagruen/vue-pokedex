@@ -1,28 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+    <div class="container">
+      <div class="row">
+        <div v-for="item in items" class="col-lg-2 col-md-4">
+          <Pokemon name="abra" type1="grass" type2="poison" />
+        </div>
+      </div>
+    </div>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import Pokemon from './components/Pokemon.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  }
+    Header,
+    Pokemon
+  },
+  data: function() {
+    return {
+      items: [
+        { message: 'Foo' },
+        { message: 'Bar' },
+        { message: 'Foo' },
+        { message: 'Bar' },
+        { message: 'Foo' },
+        { message: 'Bar' },
+        { message: 'Foo' },
+        { message: 'Bar' }
+      ]
+    }
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  margin: 0;
 }
 </style>
