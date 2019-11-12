@@ -1,12 +1,18 @@
 <template>
-  <div id="app">
+  <div id="app" class="pokedex">
     <Header />
-    <div class="container">
-      <div class="row">
-        <Pokemon v-for="pokemon in pokelist" :name="pokemon['data']['name']" :number="pokemon['data']['id']" :spriteURL="pokemon['data']['sprites']['front_default']" type1="grass" type2="poison" />
+    <div class="container pokedex-wrapper">
+      <div class="row pokedex-entries">
+        <Pokemon 
+          v-for="pokemon in pokelist"
+          :name="pokemon['data']['name']"
+          :number="pokemon['data']['id']"
+          :spriteURL="pokemon['data']['sprites']['front_default']"
+          :type1="pokemon['data']['types'][0]['type']['name']"
+          :type2="pokemon['data']['types'][1]['type']['name']"
+        />
       </div>
     </div>
-    <p>{{ info }}</p>
   </div>
 </template>
 
@@ -14,6 +20,7 @@
 import Header from './components/Header.vue'
 import Pokemon from './components/Pokemon.vue'
 import axios from 'axios'
+import { isNullOrUndefined } from 'util'
 
 export default {
   name: 'app',
@@ -23,24 +30,25 @@ export default {
   },
   data: function() {
     return {
-      items: [
-        { message: 'Foo' },
-        { message: 'Bar' },
-        { message: 'Foo' },
-        { message: 'Bar' },
-        { message: 'Foo' },
-        { message: 'Bar' },
-        { message: 'Foo' },
-        { message: 'Bar' }
-      ],
       pokelist: []
     }
   },
   mounted() {
-    for (let i = 0; i < 151; i++) {
+    for (let i = 1; i < 152; i++) {
       axios
         .get('https://pokeapi.co/api/v2/pokemon/' + i + '/')
         .then(response => (this.pokelist.push(response)))
+
+        console.log(isNullOrUndefined(pokelist[(i-1)]['data']['types'][1]['type']['name']));
+
+        if (isNullOrUndefined(pokelist[(i-1)]['data']['types'][1]['type']['name'])) {
+          console.log(pokelist[(i-1)]['data']['name']);
+        }
+    }
+  },
+  computed: {
+    someFunction: function() {
+      console.log("some console log");
     }
   }
 }

@@ -18,7 +18,7 @@ export default {
   name: 'Header',
   mounted() {
     document.getElementById("filter").onchange = function() { 
-      console.log("Changed!"); 
+      //console.log("Changed!"); 
     }
   }
 }

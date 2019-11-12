@@ -2,11 +2,15 @@
   <div class="col-lg-2 col-md-4 col-sm-6 pokemon" :id="number" :data-pokemon="name">
     <img :src="spriteURL" class="pokemon-img" alt="">
     <p class="pokemon-name">{{ name }}</p>
-    <p class="pokemon-info"><span class="grass">{{ type1 }}</span> | <span class="poison">{{ type2 }}</span></p>
+
+    <p v-if="type2" class="pokemon-info"><span :class="type1">{{ type1 }}</span> | <span :class="type2">{{ type2 }}</span></p>
+    <p v-else class="pokemon-info"><span :class="type1">{{ type1 }}</span></p>
   </div>
 </template>
 
 <script>
+import { isNullOrUndefined } from 'util';
+
 export default {
   name: 'Pokemon',
   props: {
@@ -14,7 +18,7 @@ export default {
     number: Number,
     spriteURL: String,
     type1: String,
-    type2: String
+    type2: String    
   }
 }
 </script>
