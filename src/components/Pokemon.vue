@@ -1,16 +1,13 @@
 <template>
-  <div class="col-lg-2 col-md-4 col-sm-6 pokemon" :id="number" :data-pokemon="name">
+  <div class="pokemon" :id="number" :data-pokemon="name">
     <img :src="spriteURL" class="pokemon-img" alt="">
     <p class="pokemon-name">{{ name }}</p>
-
-    <p v-if="type2" class="pokemon-info"><span :class="type1">{{ type1 }}</span> | <span :class="type2">{{ type2 }}</span></p>
+    <p v-if="type2 != 'none'" class="pokemon-info"><span :class="type1">{{ type1 }}</span> | <span :class="type2">{{ type2 }}</span></p>
     <p v-else class="pokemon-info"><span :class="type1">{{ type1 }}</span></p>
   </div>
 </template>
 
 <script>
-import { isNullOrUndefined } from 'util';
-
 export default {
   name: 'Pokemon',
   props: {
@@ -24,10 +21,6 @@ export default {
 </script>
 
 <style scoped>
-.pokemon {
-
-}
-
 .pokemon-img {
   width: 100%;
 }
@@ -45,17 +38,49 @@ export default {
   text-transform: capitalize;
 }
 
-.grass {
-
+.normal {
+ color:#aa9
 }
-
 .fire {
-
+ color:#f42
 }
-
 .water {
-
+ color:#39f
 }
-
-
+.electric {
+ color:#fc3
+}
+.grass {
+ color:#7c5
+}
+.ice {
+ color:#6cf
+}
+.fighting {
+ color:#b54
+}
+.poison {
+ color:#a59
+}
+.ground {
+ color:#db5
+}
+.flying {
+ color:#89f
+}
+.psychic {
+ color:#f59
+}
+.bug {
+ color:#ab2
+}
+.rock {
+ color:#ba6
+}
+.ghost {
+ color:#66b
+}
+.dragon {
+ color:#76e
+}
 </style>

@@ -3,14 +3,24 @@
     <Header />
     <div class="container pokedex-wrapper">
       <div class="row pokedex-entries">
-        <Pokemon 
-          v-for="pokemon in pokelist"
-          :name="pokemon['data']['name']"
-          :number="pokemon['data']['id']"
-          :spriteURL="pokemon['data']['sprites']['front_default']"
-          :type1="pokemon['data']['types'][0]['type']['name']"
-          :type2="pokemon['data']['types'][1]['type']['name']"
-        />
+        <div v-for="pokemon in pokelist" class="col-lg-2 col-md-4 col-sm-6 pokemon-wrapper">
+          <Pokemon 
+            v-if="pokemon['data']['types'].length == 2"
+            :name="pokemon['data']['name']"
+            :number="pokemon['data']['id']"
+            :spriteURL="pokemon['data']['sprites']['front_default']"
+            :type1="pokemon['data']['types'][0]['type']['name']"
+            :type2="pokemon['data']['types'][1]['type']['name']"
+          />
+          <Pokemon
+            v-else
+            :name="pokemon['data']['name']"
+            :number="pokemon['data']['id']"
+            :spriteURL="pokemon['data']['sprites']['front_default']"
+            :type1="pokemon['data']['types'][0]['type']['name']"
+            type2="none"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -20,7 +30,6 @@
 import Header from './components/Header.vue'
 import Pokemon from './components/Pokemon.vue'
 import axios from 'axios'
-import { isNullOrUndefined } from 'util'
 
 export default {
   name: 'app',
@@ -38,17 +47,6 @@ export default {
       axios
         .get('https://pokeapi.co/api/v2/pokemon/' + i + '/')
         .then(response => (this.pokelist.push(response)))
-
-        console.log(isNullOrUndefined(pokelist[(i-1)]['data']['types'][1]['type']['name']));
-
-        if (isNullOrUndefined(pokelist[(i-1)]['data']['types'][1]['type']['name'])) {
-          console.log(pokelist[(i-1)]['data']['name']);
-        }
-    }
-  },
-  computed: {
-    someFunction: function() {
-      console.log("some console log");
     }
   }
 }
